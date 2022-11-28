@@ -25,6 +25,7 @@ void bind_seal_encrypt_decrypt(pybind11::module &m) {
         .def("parms_id", py::overload_cast<>(&PublicKey::parms_id, py::const_))
         .def("get_veca", &PublicKey::get_veca)
         .def("get_vecb", &PublicKey::get_vecb)
+        .def("set_cipher", &PublicKey::set_cipher)
         .def("save",
              [](const PublicKey &c, std::string &path) {
                  std::ofstream out(path, std::ofstream::binary);
@@ -155,6 +156,7 @@ void bind_seal_encrypt_decrypt(pybind11::module &m) {
         .def(py::init<const SEALContext &, const SecretKey &>())
         .def("secret_key", &KeyGenerator::secret_key)
         .def("generate_veca", &KeyGenerator::generate_veca)
+        .def("generate_pk_with_veca", &KeyGenerator::generate_pk_with_veca)
         .def("set_veca", &KeyGenerator::set_veca)
         .def("get_veca", &KeyGenerator::get_veca)
         .def("get_vecb", &KeyGenerator::get_vecb)
